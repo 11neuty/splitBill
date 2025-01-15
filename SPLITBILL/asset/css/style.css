@@ -81,70 +81,7 @@ main {
     }
 }
 
-/* Mengatur header */
-.header {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Mengatur gaya untuk judul */
-#title-split-bill {
-    position: relative; /* Memungkinkan penggunaan posisi absolut untuk ::after */
-    margin: 20px 0; /* Margin atas dan bawah */
-    font-size: clamp(1.5rem, 1rem + 1vw, 3rem); /* Ukuran font lebih kecil */
-    background: linear-gradient(90deg, hsl(0, 100%, 70%) 0%, hsl(105, 90%, 50%) 100%); /* Gradient */
-    background-size: 500% 100%; /* Ukuran background untuk animasi */
-    animation: blend 10s infinite linear; /* Animasi */
-    color: transparent; /* Warna teks transparan untuk efek gradient */
-    background-clip: text; /* Memotong background ke teks */
-    text-align: center; /* Pusatkan teks */
-    z-index: 1; /* Pastikan elemen utama berada di atas elemen pseudo */
-}
-
-#title-split-bill::after {
-    content: 'Split Bill dulu bos👋'; /* Teks yang ditampilkan */
-    filter: blur(8px); /* Efek blur */
-    position: absolute; /* Memungkinkan posisi bebas */
-    top: 0; /* Posisi atas */
-    left: 0; /* Posisi kiri */
-    width: 100%; /* Lebar penuh */
-    height: 100%; /* Tinggi penuh */
-    z-index: -1; /* Pastikan elemen pseudo berada di belakang elemen utama */
-    mix-blend-mode: plus-lighter; /* Mode pencampuran */
-}
-
-/* Animasi untuk gradient */
-@keyframes blend {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-/* Mengatur form */
-.form {
-    display: flex;
-    flex-direction: column;
-}
-
 /* Mengatur input dan label */
-.container-menu-name,
-.container-menu-name + div {
-    margin-bottom: 15px;
-}
-
-label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #ffffff; /* Warna teks label */
-    font-family: inherit; /* Menggunakan font yang sama dengan body */
-}
-
 input[type="text"],
 input[type="number"] {
     width: 100%;
@@ -158,109 +95,21 @@ input[type="number"] {
 }
 
 /* Mengatur button */
-.bubbly-button {
-    font-family: 'Helvetica', 'Arial', sans-serif;
-    display: inline-block;
-    font-size: 1em;
-    padding: 1em 2em;
-    margin-top: 20px;
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: #ff0081; /* Warna tombol */
-    color: #fff; /* Warna teks tombol */
-    border-radius: 10px; /* Membuat sudut tombol lebih bulat */
+button {
+    padding: 10px 15px;
+    background-color: #28a745; /* Warna tombol */
+    color: white;
     border: none; /* Menghapus border default tombol */
+    border-radius: 10px; /* Membuat sudut tombol lebih bulat */
+    font-size: 16px;
     cursor: pointer;
-    position: relative;
-    transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
-    box-shadow: 0 2px 25px rgba(255, 0, 130, 0.5);
+    transition: background-color 0.3s;
+    font-family: inherit; /* Menggunakan font yang sama dengan body */
 }
 
-.bubbly-button:focus {
-    outline: 0;
+button:hover {
+    background-color: #218838; /* Warna tombol saat hover */
 }
-
-.bubbly-button:before, .bubbly-button:after {
-    position: absolute;
-    content: '';
-    display: block;
-    width: 140%;
-    height: 100%;
-    left: -20%;
-    z-index: -1000;
-    transition: all ease-in-out 0.5s;
-    background-repeat: no-repeat;
-}
-
-.bubbly-button:before {
-    display: none;
-    top: -75%;
-    background-image:  
-        radial-gradient(circle, #ff0081 20%, transparent 20%),
-        radial-gradient(circle,  transparent 20%, #ff0081 20%, transparent 30%),
-        radial-gradient(circle, #ff0081 20%, transparent 20%), 
-        radial-gradient(circle, #ff0081 20%, transparent 20%),
-        radial-gradient(circle,  transparent 10%, #ff0081 15%, transparent 20%),
-        radial-gradient(circle, #ff0081 20%, transparent 20%),
-        radial-gradient(circle, #ff0081 20%, transparent 20%),
-        radial-gradient(circle, #ff0081 20%, transparent 20%),
-        radial-gradient(circle, #ff0081 20%, transparent 20%);
-    background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
-}
-
-.bubbly-button:after {
-    display: none;
-    bottom: -75%;
-    background-image:  
-        radial-gradient(circle, #ff0081 20%, transparent 20%), 
-        radial-gradient(circle, #ff0081 20%, transparent 20%),
-        radial-gradient(circle,  transparent 10%, #ff0081 15%, transparent 20%),
-        radial-gradient(circle, #ff0081 20%, transparent 20%),
-        radial-gradient(circle, #ff0081 20%, transparent 20%),
-        radial-gradient(circle, #ff0081 20%, transparent 20%),
-        radial-gradient(circle, #ff0081 20%, transparent 20%);
-    background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
-}
-
-.bubbly-button:active {
-    transform: scale(0.9);
-    background-color: darken(#ff0081, 5%);
-    box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
-}
-
-.bubbly-button.animate:before {
-    display: block;
-    animation: topBubbles ease-in-out 0.75s forwards;
-}
-
-.bubbly-button.animate:after {
-    display: block;
-    animation: bottomBubbles ease-in-out 0.75s forwards;
-}
-
-@keyframes topBubbles {
-    0%{
-      background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
-    }
-      50% {
-        background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;}
-   100% {
-      background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
-    background-size: 0% 0%, 0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
-    }
-  }
-
-  @keyframes bottomBubbles {
-    0%{
-      background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
-    }
-    50% {
-      background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;}
-   100% {
-      background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
-    background-size: 0% 0%, 0% 0%,  0% 0%,  0% 0%,  0% 0%,  0% 0%;
-    }
-  }
 
 /* Mengatur jarak untuk tombol di form kedua dan ketiga */
 .button-next {
@@ -280,22 +129,6 @@ input[type="number"] {
 /* Mengatur jarak untuk elemen form di form ketiga */
 #form3 div {
     margin-bottom: 20px; /* Tambahkan jarak bawah untuk setiap elemen form */
-}
-
-button {
-    padding: 10px 15px;
-    background-color: #ff0081; /* Warna tombol */
-    color: white;
-    border: none; /* Menghapus border default tombol */
-    border-radius: 10px; /* Membuat sudut tombol lebih bulat */
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-family: inherit; /* Menggunakan font yang sama dengan body */
-}
-
-button:hover {
-    background-color: #ff0081; /* Warna tombol saat hover */
 }
 
 /* Responsif */

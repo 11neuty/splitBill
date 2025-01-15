@@ -1,22 +1,3 @@
-let personPrices = []; // Deklarasikan dan inisialisasi array personPrices
-
-var animateButton = function(e) {
-    e.preventDefault();
-    //reset animation
-    e.target.classList.remove('animate');
-    
-    e.target.classList.add('animate');
-    setTimeout(function(){
-        e.target.classList.remove('animate');
-    }, 700);
-};
-
-var bubblyButtons = document.getElementsByClassName("bubbly-button");
-
-for (var i = 0; i < bubblyButtons.length; i++) {
-    bubblyButtons[i].addEventListener('click', animateButton, false);
-}
-
 // Fungsi untuk menampilkan form kedua
 function showForm2(event) {
     event.preventDefault(); // Mencegah form pertama dari pengiriman
@@ -56,9 +37,11 @@ function calculateTotal(event) {
     event.preventDefault(); // Mencegah form ketiga dari pengiriman
     const tax = parseFloat(document.getElementById('tax').value);
     const discount = parseFloat(document.getElementById('discount').value);
-    const personCount = document.getElementById('person').value;
+    const personCount = parseInt(document.getElementById('person').value);
     const paymentDetails = document.getElementById('payment-details');
     paymentDetails.innerHTML = ''; // Kosongkan hasil sebelumnya
+
+    const personPrices = [];
 
     // Ambil harga makanan dari input
     for (let i = 1; i <= personCount; i++) {
