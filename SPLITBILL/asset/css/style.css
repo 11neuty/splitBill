@@ -92,6 +92,14 @@ input[type="number"] {
     background-color: #333; /* Warna latar belakang input */
     color: #ffffff; /* Warna teks input */
     font-family: inherit; /* Menggunakan font yang sama dengan body */
+    margin-bottom: 20px; /* Tambahkan jarak bawah untuk setiap input */
+}
+
+/* Mengatur label */
+label {
+    display: block;
+    margin-bottom: 10px; /* Tambahkan jarak bawah untuk setiap label */
+    font-size: 14px;
 }
 
 /* Mengatur button */
