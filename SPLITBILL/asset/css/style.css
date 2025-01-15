@@ -139,6 +139,11 @@ button:hover {
     margin-bottom: 20px; /* Tambahkan jarak bawah untuk setiap elemen form */
 }
 
+/* Tambahkan jarak antara judul dan form */
+.header {
+    margin-bottom: 20px; /* Tambahkan jarak bawah untuk header */
+}
+
 /* Responsif */
 @media (max-width: 600px) {
     .container-split {
