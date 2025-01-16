@@ -58,11 +58,42 @@ function calculateTotal(event) {
     const taxPerPerson = (tax / totalPrice);
     const discountPerPerson = (discount / totalPrice);
 
-    // Tampilkan hasil
+    // Fungsi untuk membulatkan ke kelipatan 100
+    function roundToNearest100(num) {
+        return Math.round(num / 100) * 100;
+    }
+
+    // Tampilkan hasil dalam tabel
+    let tableHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Harga Makanan</th>
+                    <th>Total Bayar</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+
     for (let i = 1; i <= personCount; i++) {
         const personName = document.getElementById(`person-${i}`).value;
         const personPrice = personPrices[i - 1];
         const personTotal = personPrice + (personPrice * taxPerPerson) - (personPrice * discountPerPerson);
-        paymentDetails.innerHTML += `<p>${personName} bayar: Rp ${personTotal.toFixed(2)}</p>`;
+        const roundedTotal = roundToNearest100(personTotal);
+        tableHTML += `
+            <tr>
+                <td>${personName}</td>
+                <td>Rp ${personPrice.toFixed(2)}</td>
+                <td>Rp ${roundedTotal.toFixed(2)}</td>
+            </tr>
+        `;
     }
+
+    tableHTML += `
+            </tbody>
+        </table>
+    `;
+
+    paymentDetails.innerHTML = tableHTML;
 }

@@ -45,10 +45,10 @@ main {
 .container-split::before {
     position: absolute;
     content: "";
-    top: -3px;
-    left: -3px;
-    right: -3px;
-    bottom: -3px;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
     border: 2px solid #1D1616; /* Border luar */
     border-radius: 22px; /* Sesuaikan dengan border-radius container */
     background: #1D1616; /* Warna latar belakang */
@@ -130,6 +130,24 @@ button:hover {
 
 #payment-details {
     margin-top: 20px; /* Tambahkan jarak atas untuk hasil pembayaran */
+    width: 100%; /* Pastikan tabel mengambil lebar penuh */
+    border-collapse: collapse; /* Menggabungkan border tabel */
+}
+
+#payment-details table {
+    width: 100%; /* Pastikan tabel mengambil lebar penuh */
+    border-collapse: collapse; /* Menggabungkan border tabel */
+}
+
+#payment-details th, #payment-details td {
+    border: 1px solid #444; /* Tambahkan border pada sel tabel */
+    padding: 10px; /* Tambahkan padding pada sel tabel */
+    text-align: left; /* Rata kiri teks dalam sel */
+}
+
+#payment-details th {
+    background-color: #333; /* Warna latar belakang header tabel */
+    color: #ffffff; /* Warna teks header tabel */
 }
 
 /* Mengatur jarak untuk elemen form di form kedua */
