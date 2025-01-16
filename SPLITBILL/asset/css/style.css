@@ -12,8 +12,9 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: #121212; /* Warna latar belakang hitam */
     color: #e0e0e0; /* Warna teks terang */
-    display: grid; /* Menggunakan grid untuk memusatkan konten */
-    place-items: center; /* Memusatkan konten secara vertikal dan horizontal */
+    display: flex; /* Menggunakan flex untuk memusatkan konten */
+    flex-direction: column; /* Mengatur arah flex menjadi kolom */
+    align-items: center; /* Memusatkan konten secara horizontal */
     min-height: 100vh; /* Memastikan body memenuhi tinggi viewport */
 }
 
@@ -22,7 +23,9 @@ main {
     display: flex;
     justify-content: center; /* Memusatkan secara horizontal */
     align-items: center; /* Memusatkan secara vertikal */
-    height: 100vh; /* Mengatur tinggi main agar memenuhi viewport */
+    flex-direction: column; /* Mengatur arah flex menjadi kolom */
+    flex-grow: 1; /* Biarkan elemen main tumbuh untuk mengisi ruang yang tersedia */
+    width: 100%; /* Pastikan main mengambil lebar penuh */
 }
 
 /* Mengatur container utama */
@@ -144,6 +147,26 @@ button:hover {
     margin-bottom: 20px; /* Tambahkan jarak bawah untuk header */
 }
 
+/* Mengatur footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    margin-top: 90px; /* Tambahkan jarak atas untuk footer */
+}
+
+footer ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
 /* Responsif */
 @media (max-width: 600px) {
     .container-split {
@@ -161,5 +184,15 @@ button:hover {
 
     button {
         font-size: 14px;
+    }
+
+    footer {
+        padding: 10px; /* Kurangi padding pada footer untuk layar kecil */
+        font-size: 14px; /* Kurangi ukuran font pada footer untuk layar kecil */
+    }
+
+    footer ul li {
+        display: block; /* Tampilkan item daftar sebagai blok pada layar kecil */
+        margin: 5px 0; /* Tambahkan margin vertikal pada item daftar */
     }
 }
