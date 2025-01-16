@@ -53,11 +53,16 @@ function calculateTotal(event) {
     const totalPrice = personPrices.reduce((acc, curr) => acc + curr, 0);
     const totalWithTax = totalPrice + tax;
     const finalTotal = totalWithTax - discount;
-    const amountPerPerson = finalTotal / personCount;
+
+    // Hitung bagian pajak dan diskon per orang berdasarkan proporsi harga makanan mereka
+    const taxPerPerson = (tax / totalPrice);
+    const discountPerPerson = (discount / totalPrice);
 
     // Tampilkan hasil
     for (let i = 1; i <= personCount; i++) {
         const personName = document.getElementById(`person-${i}`).value;
-        paymentDetails.innerHTML += `<p>${personName} bayar: Rp ${amountPerPerson.toFixed(2)}</p>`;
+        const personPrice = personPrices[i - 1];
+        const personTotal = personPrice + (personPrice * taxPerPerson) - (personPrice * discountPerPerson);
+        paymentDetails.innerHTML += `<p>${personName} bayar: Rp ${personTotal.toFixed(2)}</p>`;
     }
 }
