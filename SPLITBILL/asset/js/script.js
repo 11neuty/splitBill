@@ -43,6 +43,8 @@ function calculateTotal(event) {
 
     const personPrices = [];
 
+    const menuName = document.getElementById('menu-name').value;
+
     // Ambil harga makanan dari input
     for (let i = 1; i <= personCount; i++) {
         const price = parseFloat(document.getElementById(`price-${i}`).value);
@@ -65,6 +67,7 @@ function calculateTotal(event) {
 
     // Tampilkan hasil dalam tabel
     let tableHTML = `
+        <h2>Detail : <em>${menuName}</em></h2>
         <table>
             <thead>
                 <tr>
