@@ -1,216 +1,91 @@
-/* style.css */
-
-/* Reset default margin dan padding */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-/* Mengatur body */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    background-color: #121212; /* Warna latar belakang hitam */
-    color: #e0e0e0; /* Warna teks terang */
-    display: flex; /* Menggunakan flex untuk memusatkan konten */
-    flex-direction: column; /* Mengatur arah flex menjadi kolom */
-    align-items: center; /* Memusatkan konten secara horizontal */
-    min-height: 100vh; /* Memastikan body memenuhi tinggi viewport */
+  font-family: sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
 }
-
-/* Mengatur elemen main untuk memusatkan konten */
 main {
-    display: flex;
-    justify-content: center; /* Memusatkan secara horizontal */
-    align-items: center; /* Memusatkan secara vertikal */
-    flex-direction: column; /* Mengatur arah flex menjadi kolom */
-    flex-grow: 1; /* Biarkan elemen main tumbuh untuk mengisi ruang yang tersedia */
-    width: 100%; /* Pastikan main mengambil lebar penuh */
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
-
-/* Mengatur container utama */
 .container-split {
-    position: relative;
-    max-width: 600px;
-    margin: 20px auto; /* Margin otomatis untuk memusatkan secara horizontal */
-    padding: 20px;
-    background: #1D1616; /* Warna latar belakang container */
-    border: 2px solid #1D1616; /* Border warna */
-    border-radius: 20px; /* Membuat sudut lebih bulat */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-    z-index: 1; /* Pastikan elemen utama berada di atas elemen pseudo */
+  max-width: 600px;
+  width: 100%;
+  margin: 20px;
+  padding: 20px;
+  background: #1D1616;
+  border-radius: 20px;
+  position: relative;
 }
-
-/* Border luar untuk efek backlight */
-.container-split::before {
-    position: absolute;
-    content: "";
-    top: -5px;
-    left: -5px;
-    right: -5px;
-    bottom: -5px;
-    border: 2px solid #1D1616; /* Border luar */
-    border-radius: 22px; /* Sesuaikan dengan border-radius container */
-    background: #1D1616; /* Warna latar belakang */
-    z-index: -1;
-}
-
-/* Efek backlight */
 .container-split::after {
-    position: absolute;
-    content: "";
-    top: -6px;
-    left: -6px;
-    right: -6px;
-    bottom: -6px;
-    z-index: -2;
-    border-radius: 24px; /* Sesuaikan dengan border-radius container */
-    transform: scale(1.05);
-    filter: blur(10px);
-    background: linear-gradient(270deg, #0fffc1, #7e0fff);
-    background-size: 200% 200%;
-    animation: animateGlow 10s ease infinite;
+  content: "";
+  position: absolute;
+  top: -6px; left: -6px; right: -6px; bottom: -6px;
+  background: linear-gradient(270deg, #0fffc1, #7e0fff);
+  filter: blur(10px);
+  border-radius: 24px;
+  z-index: -1;
+  animation: animateGlow 10s ease infinite;
 }
-
 @keyframes animateGlow {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
-
-/* Mengatur input dan label */
-input[type="text"],
-input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #444; /* Warna border input */
-    border-radius: 10px; /* Membuat sudut input lebih bulat */
-    font-size: 16px;
-    background-color: #333; /* Warna latar belakang input */
-    color: #ffffff; /* Warna teks input */
-    font-family: inherit; /* Menggunakan font yang sama dengan body */
-    margin-bottom: 20px; /* Tambahkan jarak bawah untuk setiap input */
+label { display: block; margin-bottom: 10px; font-size: 14px; }
+input[type="text"], input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #444;
+  border-radius: 10px;
+  background: #333;
+  color: #fff;
 }
-
-/* Mengatur label */
-label {
-    display: block;
-    margin-bottom: 10px; /* Tambahkan jarak bawah untuk setiap label */
-    font-size: 14px;
-}
-
-/* Mengatur button */
 button {
-    padding: 10px 15px;
-    background-color: #28a745; /* Warna tombol */
-    color: white;
-    border: none; /* Menghapus border default tombol */
-    border-radius: 10px; /* Membuat sudut tombol lebih bulat */
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-family: inherit; /* Menggunakan font yang sama dengan body */
+  padding: 10px 15px;
+  background: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
 }
-
-button:hover {
-    background-color: #218838; /* Warna tombol saat hover */
+button:hover { background: #218838; }
+.button-next { text-align: center; margin-top: 20px; }
+.person-block, .item-block {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #2a2a2a;
+  border-radius: 10px;
 }
-
-/* Mengatur jarak untuk tombol di form kedua dan ketiga */
-.button-next {
-    text-align: center;
-    margin-top: 40px; /* Tambahkan jarak atas yang lebih besar */
+.person-block h3 {
+  margin-bottom: 10px;
 }
-
-#payment-details {
-    margin-top: 20px; /* Tambahkan jarak atas untuk hasil pembayaran */
-    width: 100%; /* Pastikan tabel mengambil lebar penuh */
-    border-collapse: collapse; /* Menggabungkan border tabel */
-}
-
+#payment-details { margin-top: 20px; overflow-x: auto; }
 #payment-details table {
-    width: 100%; /* Pastikan tabel mengambil lebar penuh */
-    border-collapse: collapse; /* Menggabungkan border tabel */
+  width: 100%;
+  border-collapse: collapse;
 }
-
-#payment-details th, #payment-details td {
-    border: 1px solid #444; /* Tambahkan border pada sel tabel */
-    padding: 10px; /* Tambahkan padding pada sel tabel */
-    text-align: left; /* Rata kiri teks dalam sel */
+#payment-details th, td {
+  border: 1px solid #444;
+  padding: 10px;
+  text-align: left;
 }
-
-#payment-details th {
-    background-color: #333; /* Warna latar belakang header tabel */
-    color: #ffffff; /* Warna teks header tabel */
-}
-
-/* Mengatur jarak untuk elemen form di form kedua */
-#form2 div {
-    margin-bottom: 20px; /* Tambahkan jarak bawah untuk setiap elemen form */
-}
-
-/* Mengatur jarak untuk elemen form di form ketiga */
-#form3 div {
-    margin-bottom: 20px; /* Tambahkan jarak bawah untuk setiap elemen form */
-}
-
-/* Tambahkan jarak antara judul dan form */
-.header {
-    margin-bottom: 20px; /* Tambahkan jarak bawah untuk header */
-}
-
-/* Mengatur footer */
+#payment-details th { background: #333; }
 footer {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    width: 100%;
-    margin-top: 40px; /* Tambahkan lebih banyak jarak atas untuk footer */
-}
-
-footer ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-footer ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-/* Responsif */
-@media (max-width: 600px) {
-    .container-split {
-        padding: 15px;
-    }
-
-    #title-split-bill {
-        font-size: 1.5rem; /* Ukuran font judul responsif */
-    }
-
-    input[type="text"],
-    input[type="number"] {
-        font-size: 14px;
-    }
-
-    button {
-        font-size: 14px;
-    }
-
-    footer {
-        padding: 10px; /* Kurangi padding pada footer untuk layar kecil */
-        font-size: 14px; /* Kurangi ukuran font pada footer untuk layar kecil */
-    }
-
-    footer ul li {
-        display: block; /* Tampilkan item daftar sebagai blok pada layar kecil */
-        margin: 5px 0; /* Tambahkan margin vertikal pada item daftar */
-    }
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+  width: 100%;
 }

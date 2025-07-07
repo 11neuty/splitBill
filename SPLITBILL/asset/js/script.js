@@ -1,102 +1,80 @@
-// Fungsi untuk menampilkan form kedua
 function showForm2(event) {
-    event.preventDefault(); // Mencegah form pertama dari pengiriman
-
-    // Sembunyikan form pertama dan tampilkan form kedua
-    document.getElementById('form1').style.display = 'none';
-    document.getElementById('form2').style.display = 'block';
-
-    // Ambil jumlah orang dari input dan buat input untuk setiap orang
-    const personCount = document.getElementById('person').value;
-    const personInputs = document.getElementById('person-inputs');
-    personInputs.innerHTML = ''; // Kosongkan input sebelumnya
-
-    for (let i = 1; i <= personCount; i++) {
-        personInputs.innerHTML += `
-            <div>
-                <label for="person-${i}">Nama Orang ${i}</label>
-                <input type="text" id="person-${i}" placeholder="Nama Orang ${i}" required>
-                <label for="price-${i}">Harga Makanan Orang ${i}</label>
-                <input type="number" id="price-${i}" placeholder="Harga Makanan Orang ${i}" required>
-            </div>
-        `;
-    }
+  event.preventDefault();
+  const personCount = parseInt(document.getElementById('person').value);
+  document.getElementById('form1').style.display = 'none';
+  const container = document.getElementById('person-inputs');
+  container.innerHTML = '';
+  for (let i = 1; i <= personCount; i++) {
+    container.innerHTML += `
+      <div class="person-block">
+        <h3>Orang ${i}</h3>
+        <label>Nama:</label>
+        <input type="text" id="person-${i}" placeholder="Nama Orang ${i}" required>
+        <label>Jumlah item makanan:</label>
+        <input type="number" id="item-count-${i}" min="1" value="1" required>
+        <button type="button" onclick="showItemDetails(${i})">Detail Item</button>
+        <div id="items-${i}"></div>
+      </div>`;
+  }
+  document.getElementById('form2').style.display = 'block';
 }
 
-// Fungsi untuk menampilkan form ketiga
+function showItemDetails(idx) {
+  const cnt = parseInt(document.getElementById(`item-count-${idx}`).value);
+  const div = document.getElementById(`items-${idx}`);
+  div.innerHTML = '';
+  for (let j = 1; j <= cnt; j++) {
+    div.innerHTML += `
+      <div class="item-block">
+        <label>Item ${j}:</label>
+        <input type="text" id="item-name-${idx}-${j}" placeholder="Nama Item ${j}" required>
+        <input type="number" id="item-price-${idx}-${j}" placeholder="Harga Item ${j}" required>
+      </div>`;
+  }
+}
+
 function showForm3(event) {
-    event.preventDefault(); // Mencegah form kedua dari pengiriman
-
-    // Sembunyikan form kedua dan tampilkan form ketiga
-    document.getElementById('form2').style.display = 'none';
-    document.getElementById('form3').style.display = 'block';
+  event.preventDefault();
+  document.getElementById('form2').style.display = 'none';
+  document.getElementById('form3').style.display = 'block';
 }
 
-// Fungsi untuk menghitung total
 function calculateTotal(event) {
-    event.preventDefault(); // Mencegah form ketiga dari pengiriman
-    const tax = parseFloat(document.getElementById('tax').value);
-    const discount = parseFloat(document.getElementById('discount').value);
-    const personCount = parseInt(document.getElementById('person').value);
-    const paymentDetails = document.getElementById('payment-details');
-    paymentDetails.innerHTML = ''; // Kosongkan hasil sebelumnya
-
-    const personPrices = [];
-
-    const menuName = document.getElementById('menu-name').value;
-
-    // Ambil harga makanan dari input
-    for (let i = 1; i <= personCount; i++) {
-        const price = parseFloat(document.getElementById(`price-${i}`).value);
-        personPrices.push(price); // Simpan harga ke array
+  event.preventDefault();
+  const tax = parseFloat(document.getElementById('tax').value) || 0;
+  const discount = parseFloat(document.getElementById('discount').value) || 0;
+  const personCount = parseInt(document.getElementById('person').value);
+  const menuName = document.getElementById('menu-name').value;
+  const paymentDetails = document.getElementById('payment-details');
+  
+  let grandTotal = 0, people = [];
+  for (let i = 1; i <= personCount; i++) {
+    const name = document.getElementById(`person-${i}`).value;
+    const cnt = parseInt(document.getElementById(`item-count-${i}`).value);
+    let subtotal = 0;
+    for (let j = 1; j <= cnt; j++) {
+      subtotal += parseFloat(document.getElementById(`item-price-${i}-${j}`).value) || 0;
     }
+    people.push({ name, subtotal });
+    grandTotal += subtotal;
+  }
 
-    // Hitung total biaya
-    const totalPrice = personPrices.reduce((acc, curr) => acc + curr, 0);
-    const totalWithTax = totalPrice + tax;
-    const finalTotal = totalWithTax - discount;
+  const taxRate = grandTotal ? tax / grandTotal : 0;
+  const discRate = grandTotal ? discount / grandTotal : 0;
+  const round100 = x => Math.round(x / 100) * 100;
 
-    // Hitung bagian pajak dan diskon per orang berdasarkan proporsi harga makanan mereka
-    const taxPerPerson = (tax / totalPrice);
-    const discountPerPerson = (discount / totalPrice);
+  let html = `<h2>Detail: <em>${menuName}</em></h2><table>
+    <thead><tr><th>Nama</th><th>Subtotal</th><th>Total Bayar</th></tr></thead><tbody>`;
+  
+  people.forEach(p => {
+    const tot = p.subtotal * (1 + taxRate - discRate);
+    html += `<tr>
+      <td>${p.name}</td>
+      <td>Rp ${p.subtotal.toFixed(2)}</td>
+      <td>Rp ${round100(tot).toFixed(2)}</td>
+    </tr>`;
+  });
 
-    // Fungsi untuk membulatkan ke kelipatan 100
-    function roundToNearest100(num) {
-        return Math.round(num / 100) * 100;
-    }
-
-    // Tampilkan hasil dalam tabel
-    let tableHTML = `
-        <h2>Detail : <em>${menuName}</em></h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nama</th>
-                    <th>Harga Makanan</th>
-                    <th>Total Bayar</th>
-                </tr>
-            </thead>
-            <tbody>
-    `;
-
-    for (let i = 1; i <= personCount; i++) {
-        const personName = document.getElementById(`person-${i}`).value;
-        const personPrice = personPrices[i - 1];
-        const personTotal = personPrice + (personPrice * taxPerPerson) - (personPrice * discountPerPerson);
-        const roundedTotal = roundToNearest100(personTotal);
-        tableHTML += `
-            <tr>
-                <td>${personName}</td>
-                <td>Rp ${personPrice.toFixed(2)}</td>
-                <td>Rp ${roundedTotal.toFixed(2)}</td>
-            </tr>
-        `;
-    }
-
-    tableHTML += `
-            </tbody>
-        </table>
-    `;
-
-    paymentDetails.innerHTML = tableHTML;
+  html += `</tbody></table>`;
+  paymentDetails.innerHTML = html;
 }

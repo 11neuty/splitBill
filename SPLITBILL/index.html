@@ -1,71 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patungan by neuty</title>
-    <link rel="stylesheet" href="asset/css/style.css">
-    <script src="asset/js/script.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patungan by neuty</title>
+  <link rel="stylesheet" href="asset/css/style.css">
+  <script src="asset/js/script.js" defer></script>
 </head>
-
 <body>
-    <header></header>
-    <main>
-        <div class="container-split">
-            <div class="header">
-                <h1 id="title-split-bill">Patungan Brow</h1>
-            </div>
-            <div class="form" id="form1">
-                <form action="get" class="input-split" onsubmit="return showForm2(event)">
-                    <div class="container-menu-name">
-                        <label for="menu-name">Kamu makan apa hari ini?</label>
-                        <input type="text" id="menu-name" placeholder="ayam goreng" minlength="3" required>
-                    </div>
-                    <div>
-                        <label for="count-person">Berapa orang yang makan bareng?</label>
-                        <input type="number" name="count-person" id="person" placeholder="5" maxlength="20" required>
-                    </div>
-                    <div class="button-next">
-                        <button type="submit">lanjutkan</button>
-                    </div>
-                </form>
-            </div>
-            <div class="form" id="form2" style="display: none;">
-                <form action="get" class="input-split" onsubmit="return showForm3(event)">
-                    <div id="person-inputs"></div>
-                    <div class="button-next">
-                        <button type="submit">lanjutkan</button>
-                    </div>
-                </form>
-            </div>
-            <div class="form" id="form3" style="display: none;">
-                <!-- Form ketiga -->
-                <form action="get" class="input-split" onsubmit="return calculateTotal(event)">
-                    <div>
-                        <label for="tax">Masukkan pajak</label>
-                        <input type="number" id="tax" placeholder="Pajak" required>
-                    </div>
-                    <div>
-                        <label for="discount">Masukkan diskon</label>
-                        <input type="number" id="discount" placeholder="Diskon" required>
-                    </div>
-                    <div class="button-next">
-                        <button type="submit">Hitung Total</button>
-                    </div>
-                </form>
-                <div id="payment-details"></div>
-            </div>
-        </div>
-    </main>
-    <footer>
-        <div>
-            <p>&copy; 2025 11neuty. Selamat Makan</p>
-            <ul>
-                <li></li>
-            </ul>
-        </div>
-    </footer>
-</body>
+  <main>
+    <div class="container-split">
+      <h1 id="title-split-bill">Patungan Brow</h1>
 
+      <!-- Form 1 -->
+      <div class="form" id="form1">
+        <form onsubmit="return showForm2(event)">
+          <label for="menu-name">Kamu makan apa hari ini?</label>
+          <input type="text" id="menu-name" placeholder="ayam goreng" minlength="3" required>
+          
+          <label for="person">Berapa orang yang makan bareng?</label>
+          <input type="number" id="person" min="1" placeholder="5" required>
+
+          <div class="button-next">
+            <button type="submit">lanjutkan</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Form 2 -->
+      <div class="form" id="form2" style="display:none;">
+        <form onsubmit="return showForm3(event)">
+          <div id="person-inputs"></div>
+          <div class="button-next">
+            <button type="submit">lanjutkan</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Form 3 -->
+      <div class="form" id="form3" style="display:none;">
+        <form onsubmit="return calculateTotal(event)">
+          <label for="tax">Masukkan pajak</label>
+          <input type="number" id="tax" placeholder="Pajak" required>
+          
+          <label for="discount">Masukkan diskon</label>
+          <input type="number" id="discount" placeholder="Diskon" required>
+
+          <div class="button-next">
+            <button type="submit">Hitung Total</button>
+          </div>
+        </form>
+        <div id="payment-details"></div>
+      </div>
+
+    </div>
+  </main>
+  <footer>
+    <p>&copy; 2025 11neuty. Selamat Makan</p>
+  </footer>
+</body>
 </html>
